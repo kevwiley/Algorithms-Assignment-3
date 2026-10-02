@@ -35,7 +35,14 @@ def linear_search(data, target):
     """
     # TODO: Implement linear search that loops through each element and returns its index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
+    # Delete pass and write your code here
+
+    #loops through every position and checks if i equals target value
+    for i in range(len(data)):
+        if data[i] == target:
+            return i
+
+    return -1
 
 
 # ============================================================================
@@ -67,7 +74,21 @@ def binary_search_iterative(data, target):
     """
     # TODO: Implement iterative binary search that uses iteration to find the target. Return the index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
+    # Delete pass and write your code here
+
+    left = 0
+    right = len(data) - 1
+    #checks if the data is more or less than middle value, and can forcus on correct half
+    while left <= right:
+        middle = (left + right) // 2
+
+        if data[middle] == target:
+            return middle
+        elif data[middle] < target:
+            left = middle + 1
+        else:
+            right = middle - 1
+    return -1
 
 
 # ============================================================================
@@ -105,7 +126,21 @@ def binary_search_recursive(data, target, left=None, right=None):
     # TODO: Implement recursive binary search that uses recursion to find the target. Return the index if found and -1 if not found. Note that default parameters are already handled above.
 
     
-    pass # Delete pass and write your code here
+    # Delete pass and write your code here
+
+    #recursively checks for target using correct half based on middle value
+    if left > right:
+        return -1
+    middle = (left + right) // 2
+
+    if data[middle] == target:
+        return middle
+    elif data[middle] < target:
+        return binary_search_recursive(data, target, middle + 1, right)
+    else:
+        return binary_search_recursive(data, target, left, middle -1)
+
+
 
 
 # ============================================================================
@@ -283,8 +318,8 @@ if __name__ == "__main__":
     
     # Uncomment these as you complete each part:
     
-    # test_search_correctness()
-    # benchmark_all_datasets()
-    # analyze_preprocessing_costs()
+    test_search_correctness()
+    benchmark_all_datasets()
+    analyze_preprocessing_costs()
     
     print("\n⚠ Uncomment the test functions in the main block to run benchmarks!")
